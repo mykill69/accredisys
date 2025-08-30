@@ -19,11 +19,7 @@ class PagesController extends Controller
         return view('pages.home');
     }
 
-    public function programSettings()
-    {
-        return view('pages.programSetting');
-    }
-
+    
     public function manageContent()
     {
         $surveyVisits = SurveyVisit::all();

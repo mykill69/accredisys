@@ -55,6 +55,7 @@
     a {
         color: #fff;
     }
+
     .logo:hover {
         text-decoration: none;
         color: #fff;
@@ -87,21 +88,22 @@
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->routeIs('programSettings') ? 'active' : '' }}"
                                             href="{{ route('programSettings') }}">
-                                            <i class="fas fa-cogs"></i> Program Settings
+                                            <i class="fas fa-book-open"></i> Programs
                                         </a>
                                     </li>
+
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->is('manageContent') ? 'active' : '' }}"
                                             href="{{ url('/manageContent') }}">
                                             <i class="fas fa-edit"></i> Manage Content
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link {{ request()->is('folders') ? 'active' : '' }}"
                                             href="{{ url('/folders') }}">
                                             <i class="fas fa-folder"></i> Folders
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->is('users') ? 'active' : '' }}"
                                             href="{{ url('/users') }}">

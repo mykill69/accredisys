@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\ProgramController;
 
 
 /*
@@ -38,8 +39,21 @@ Route::group(['middleware'=>['login_auth']],function(){
     //Main page
 Route::get('/', [PagesController::class, 'home'])->name('home');
 
+// Folder 
+Route::get('/program-settings', [ProgramController::class, 'programSettings'])->name('programSettings');
+Route::post('/folders/store', [ProgramController::class, 'storeFolder'])->name('storeFolder');
 
-Route::get('/program-settings', [PagesController::class, 'programSettings'])->name('programSettings');
+// Subfolder routes
+Route::get('/folders/{id}', [ProgramController::class, 'showFolder'])->name('showFolder');
+Route::post('/folders/{id}/subfolders/store', [ProgramController::class, 'storeSubFolder'])->name('storeSubFolder');
+Route::get('/subfolders/{id}', [ProgramController::class, 'showSubFolder'])->name('showSubFolder');
+Route::post('/subfolders/{id}/programs/store', [ProgramController::class, 'storeProgram'])->name('storeProgram');
+
+// Program routes
+Route::get('/programs/{id}', [ProgramController::class, 'showProgram'])->name('showProgram');
+
+
+
 
 //folders
 Route::get('/folders', [PagesController::class, 'folders'])->name('folders');

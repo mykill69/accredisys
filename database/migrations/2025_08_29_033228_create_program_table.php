@@ -14,14 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('program', function (Blueprint $table) {
-            $table->id();
-            $table->string('prog_name');
-            $table->unsignedBigInteger('college_id');
-            $table->string('campus');
-            $table->string('level');   // e.g., undergraduate, graduate
-            $table->string('status');  // e.g., active, inactive
-            $table->timestamps();
-        });
+    $table->id();
+    $table->unsignedBigInteger('sub_folder_id');   // link to subfolder
+    $table->string('prog_name');
+    // $table->unsignedBigInteger('college_id');
+    $table->string('campus');
+    $table->string('level');   // e.g., undergraduate, graduate
+    $table->string('status');  // e.g., active, inactive
+    $table->timestamps();
+
+    $table->foreign('sub_folder_id')->references('id')->on('sub_folders')->onDelete('cascade');
+});
     }
 
     /**
