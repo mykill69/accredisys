@@ -74,7 +74,11 @@
                     <div class="row">
                         @forelse ($folder->subFolders as $sub)
                             <div class="col-md-2 text-center mb-4 position-relative folder-icon">
-
+                                {{-- Subfolder count badge --}}
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                    {{ $sub->programs->count() }}
+                                </span>
                                 {{-- 3-dot dropdown --}}
                                 <div class="dropdown folder-menu position-absolute top-0 end-0">
                                     <button class="btn btn-sm btn-light" type="button"

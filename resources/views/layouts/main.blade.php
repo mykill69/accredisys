@@ -135,7 +135,7 @@
 
 
 
-        <div class="content-wrapper" style="padding-top: 14px; margin-top:-1%;">
+        <div class="content-wrapper" style="padding-top: 14px; margin-top:-1%; height:auto;">
             @yield('body') <!-- This will display the content from index.blade.php -->
         </div>
         <!-- Main footer -->
