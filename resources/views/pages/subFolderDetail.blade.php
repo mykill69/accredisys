@@ -32,6 +32,7 @@
                                     <th>CAMPUS</th>
                                     <th>DATE CREATED</th>
                                     <th>STATUS</th>
+                                    <th>CODE</th>
                                     <th>ACTIONS</th>
                                 </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                         <td>{{ $program->campusRelation->cam_name ?? 'N/A' }}</td>
                                         <td>{{ $program->created_at->format('M d, Y') }}</td>
                                         <td>{{ ucfirst($program->status) }}</td>
+                                        <td><span class="badge bg-info">{{ $program->code ?? 'N/A' }}</span></td>
                                         <td>
                                             <!-- Edit button -->
                                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -89,4 +91,5 @@
     </div>
 
     @include('modal.addProgram')
+    @include('modal.editProgram')
 @endsection

@@ -14,7 +14,8 @@ class Program extends Model
         'sub_folder_id',
         'campus',
         'level',
-        'status'
+        'status',
+        'code'
     ];
 
     public function subFolder()

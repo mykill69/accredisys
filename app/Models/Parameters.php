@@ -19,4 +19,8 @@ class Parameters extends Model
     {
         return $this->belongsTo(Area::class, 'area_id');
     }
+    public function files()
+{
+    return $this->hasMany(AreaFile::class, 'param_id');
+}
 }

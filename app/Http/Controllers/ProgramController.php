@@ -65,6 +65,23 @@ public function showSubFolder($id)
     return view('pages.subFolderDetail', compact('subFolder', 'campuses', 'visit_levels'));
 }
 
+public function updateProgram(Request $request, $id)
+{
+    $program = Program::findOrFail($id);
+
+    $program->update([
+        'prog_name' => $request->prog_name ?? $program->prog_name,
+        'campus'    => $request->campus ?? $program->campus,
+        'level'     => $request->level ?? $program->level,
+        'status'    => $request->status ?? $program->status,
+        'code'      => $request->code ?? $program->code ?? rand(100000, 999999),
+    ]);
+
+    return redirect()->back()->with('success', 'Program updated successfully!');
+}
+
+
+
 public function storeProgram(Request $request, $subFolderId)
 {
     $request->validate([

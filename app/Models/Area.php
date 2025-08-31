@@ -23,4 +23,9 @@ class Area extends Model
 {
     return $this->hasMany(Parameters::class, 'area_id');
 }
+public function program()
+{
+    return $this->belongsTo(Program::class, 'survey_visit_id', 'level');
+}
+
 }

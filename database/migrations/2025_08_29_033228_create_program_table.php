@@ -21,6 +21,7 @@ return new class extends Migration
     $table->string('campus');
     $table->string('level');   // e.g., undergraduate, graduate
     $table->string('status');  // e.g., active, inactive
+    $table->string('code')->nullable()->unique(); // new code field
     $table->timestamps();
 
     $table->foreign('sub_folder_id')->references('id')->on('sub_folders')->onDelete('cascade');

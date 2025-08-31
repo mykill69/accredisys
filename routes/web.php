@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\AreaController;
 
 
 /*
@@ -48,10 +49,17 @@ Route::get('/folders/{id}', [ProgramController::class, 'showFolder'])->name('sho
 Route::post('/folders/{id}/subfolders/store', [ProgramController::class, 'storeSubFolder'])->name('storeSubFolder');
 Route::get('/subfolders/{id}', [ProgramController::class, 'showSubFolder'])->name('showSubFolder');
 Route::post('/subfolders/{id}/programs/store', [ProgramController::class, 'storeProgram'])->name('storeProgram');
+Route::put('/programs/{id}/update', [ProgramController::class, 'updateProgram'])->name('updateProgram');
 
 // Program routes
 Route::get('/programs/{id}', [ProgramController::class, 'showProgram'])->name('showProgram');
 
+// Area Content
+Route::get('/areas/{id}', [AreaController::class, 'show'])->name('areas.show');
+Route::post('/parameters/{parameter}/files', [AreaController::class, 'store']);
+Route::post('/parameters/files/upload-multiple', [AreaController::class, 'storeMultiple']);
+Route::delete('/files/{id}', [AreaController::class, 'destroy'])->name('files.destroy');
+Route::put('/files/{id}', [AreaController::class, 'update'])->name('files.update');
 
 
 
