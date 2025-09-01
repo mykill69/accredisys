@@ -17,4 +17,9 @@ class SurveyVisit extends Model
     {
         return $this->hasMany(Area::class, 'survey_visit_id');
     }
+    public function levelFolders()
+{
+    return $this->hasMany(LevelFolder::class, 'survey_visit_id');
+}
+
 }

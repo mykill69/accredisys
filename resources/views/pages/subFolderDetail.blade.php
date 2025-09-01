@@ -48,8 +48,8 @@
                                         </td>
 
                                         <td>
-                                            {{-- If level is FK to survey_visit --}}
-                                            <span class="badge bg-warning">{{ optional($program->levelRelation)->visit_level ?? 'N/A' }}</span>
+                                            <span
+                                                class="badge bg-warning">{{ optional($program->levelRelation)->visit_level ?? 'N/A' }}</span>
                                         </td>
                                         <td>{{ $program->campusRelation->cam_name ?? 'N/A' }}</td>
                                         <td>{{ $program->created_at->format('M d, Y') }}</td>
@@ -63,7 +63,8 @@
                                             </button>
 
                                             <!-- Delete form -->
-                                            <form action="#" method="POST" class="d-inline">
+                                            <form action="" method="POST"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"
@@ -75,10 +76,11 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">No programs found.</td>
+                                        <td colspan="7" class="text-center">No programs found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
+
                         </table>
 
 

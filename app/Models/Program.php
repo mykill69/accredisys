@@ -30,5 +30,15 @@ class Program extends Model
     {
         return $this->belongsTo(Campus::class, 'campus');
     }
+    // NEW: get folders connected via survey visit
+    public function levelFolders()
+    {
+        return $this->hasMany(LevelFolder::class, 'survey_visit_id', 'level');
+    }
+    public function areas()
+    {
+        return $this->hasMany(Area::class, 'survey_visit_id', 'level');
+    }
+
 }
 

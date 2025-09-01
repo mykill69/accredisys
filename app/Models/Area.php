@@ -27,5 +27,8 @@ public function program()
 {
     return $this->belongsTo(Program::class, 'survey_visit_id', 'level');
 }
-
+public function files()
+{
+    return $this->hasMany(AreaFile::class, 'area_id');
+}
 }

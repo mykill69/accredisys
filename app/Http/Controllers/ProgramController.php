@@ -12,6 +12,7 @@ use App\Models\Parameters;
 use App\Models\Folder;
 use App\Models\SubFolder;
 use App\Models\Program;
+use App\Models\LevelFolder;
 
 class ProgramController extends Controller
 {
@@ -102,12 +103,41 @@ public function storeProgram(Request $request, $subFolderId)
     return redirect()->back()->with('success', 'Program added successfully!');
 }
 
+// public function showProgram($id)
+// {
+//     $program = Program::with(['campusRelation', 'levelRelation'])->findOrFail($id);
+//     // ✅ Fetch only areas that match this program's survey visit level
+//     $areas = Area::where('survey_visit_id', $program->level)->get();
+//     return view('pages.programDetail', compact('program', 'areas'));
+// }
+// public function showProgram($id)
+// {
+//     $program = Program::with(['campusRelation', 'levelRelation', 'levelFolders'])->findOrFail($id);
+
+//     // Fetch only areas for this program's survey visit level
+//     $areas = Area::where('survey_visit_id', $program->level)->get();
+
+//     // Fetch folders linked to the same survey_visit
+//     $folders = LevelFolder::where('survey_visit_id', $program->level)->get();
+
+//     return view('pages.programDetail', compact('program', 'areas', 'folders'));
+// }
 public function showProgram($id)
 {
-    $program = Program::with(['campusRelation', 'levelRelation'])->findOrFail($id);
-    // ✅ Fetch only areas that match this program's survey visit level
-    $areas = Area::where('survey_visit_id', $program->level)->get();
-    return view('pages.programDetail', compact('program', 'areas'));
+    $program = Program::with(['campusRelation', 'levelRelation', 'levelFolders'])->findOrFail($id);
+
+    // Fetch only areas for this program’s survey visit level
+    $areas = Area::with(['parameters.files' => function ($query) use ($program) {
+        // Ensure files are only loaded if they belong to this program
+        $query->where('program_id', $program->id);
+    }])
+    ->where('survey_visit_id', $program->level)
+    ->get();
+
+    // Fetch folders linked to the same survey_visit
+    $folders = LevelFolder::where('survey_visit_id', $program->level)->get();
+
+    return view('pages.programDetail', compact('program', 'areas', 'folders'));
 }
 
 

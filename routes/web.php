@@ -6,6 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\LevelFileController;
 
 
 /*
@@ -51,17 +52,29 @@ Route::get('/subfolders/{id}', [ProgramController::class, 'showSubFolder'])->nam
 Route::post('/subfolders/{id}/programs/store', [ProgramController::class, 'storeProgram'])->name('storeProgram');
 Route::put('/programs/{id}/update', [ProgramController::class, 'updateProgram'])->name('updateProgram');
 
-// Program routes
+// Program detail
 Route::get('/programs/{id}', [ProgramController::class, 'showProgram'])->name('showProgram');
 
-// Area Content
-Route::get('/areas/{id}', [AreaController::class, 'show'])->name('areas.show');
+// Program areas (all areas + parameters for a program)
+Route::get('/program-areas/{programId}/area/{areaId}', [AreaController::class, 'show'])
+    ->name('program.areas');
+
+
+
 Route::post('/parameters/{parameter}/files', [AreaController::class, 'store']);
 Route::post('/parameters/files/upload-multiple', [AreaController::class, 'storeMultiple']);
 Route::delete('/files/{id}', [AreaController::class, 'destroy'])->name('files.destroy');
 Route::put('/files/{id}', [AreaController::class, 'update'])->name('files.update');
 
+// level Folders
+Route::get('/level-folders', [AreaController::class, 'levelFolders'])->name('levelFolders');
 
+// Upload multiple
+Route::post('/level-folders/files/upload-multiple', [LevelFileController::class, 'storeMultiple']);
+
+// Update / Delete
+Route::delete('/level-files/{id}', [LevelFileController::class, 'destroy'])->name('level.files.destroy');
+Route::put('/level-files/{id}', [LevelFileController::class, 'update'])->name('level.files.update');
 
 //folders
 Route::get('/folders', [PagesController::class, 'folders'])->name('folders');

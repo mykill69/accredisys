@@ -12,17 +12,26 @@ class AreaFile extends Model
     protected $table = 'area_files';
 
     protected $fillable = [
-        'param_id',
-        'file_name',
-        'file_path',
-        'description',
-    ];
+    'area_id',
+    'param_id',
+    'program_id',
+    'file_name',
+    'file_path',
+];
+
+
 
    
-    public function program()
+    public function area()
+{
+    return $this->belongsTo(Area::class, 'area_id');
+}
+
+public function program()
 {
     return $this->belongsTo(Program::class, 'program_id');
 }
+
 public function parameter()
 {
     return $this->belongsTo(Parameters::class, 'param_id');

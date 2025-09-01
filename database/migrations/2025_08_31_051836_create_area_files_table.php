@@ -15,15 +15,19 @@ return new class extends Migration
     {
         Schema::create('area_files', function (Blueprint $table) {
     $table->id();
-    $table->unsignedBigInteger('param_id'); // FK to parameters table
+    $table->unsignedBigInteger('area_id');    // FK to areas table
+    $table->unsignedBigInteger('param_id');   // FK to parameters table
+    $table->unsignedBigInteger('program_id'); // FK to programs table
     $table->string('file_name');
     $table->string('file_path');
-    $table->text('description')->nullable();
     $table->timestamps();
 
-    // Foreign key should be param_id → parameters table
+    $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
     $table->foreign('param_id')->references('id')->on('parameters')->onDelete('cascade');
+    $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
 });
+
+
     }
 
     /**
