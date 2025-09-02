@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_folder');
+        Schema::dropIfExists('sub_folders');
     }
 };
