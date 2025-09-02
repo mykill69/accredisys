@@ -66,9 +66,28 @@ public function showSubFolder($id)
     return view('pages.subFolderDetail', compact('subFolder', 'campuses', 'visit_levels'));
 }
 
+// public function updateProgram(Request $request, $id)
+// {
+//     $program = Program::findOrFail($id);
+
+//     $program->update([
+//         'prog_name' => $request->prog_name ?? $program->prog_name,
+//         'campus'    => $request->campus ?? $program->campus,
+//         'level'     => $request->level ?? $program->level,
+//         'status'    => $request->status ?? $program->status,
+//         'code'      => $request->code ?? $program->code ?? rand(100000, 999999),
+//     ]);
+
+//     return redirect()->back()->with('success', 'Program updated successfully!');
+// }
 public function updateProgram(Request $request, $id)
 {
     $program = Program::findOrFail($id);
+
+    // Generate a new token if requested
+    if ($request->has('generate_guest_token')) {
+        $program->guest_token = bin2hex(random_bytes(16)); // unique token
+    }
 
     $program->update([
         'prog_name' => $request->prog_name ?? $program->prog_name,
@@ -76,6 +95,7 @@ public function updateProgram(Request $request, $id)
         'level'     => $request->level ?? $program->level,
         'status'    => $request->status ?? $program->status,
         'code'      => $request->code ?? $program->code ?? rand(100000, 999999),
+        'guest_token' => $program->guest_token, // keep token if set
     ]);
 
     return redirect()->back()->with('success', 'Program updated successfully!');

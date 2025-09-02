@@ -229,6 +229,7 @@
                                         <thead>
                                             <tr>
                                                 {{-- <th>No.</th> --}}
+                                                <th>Level</th>
                                                 <th>Area</th>
                                                 <th>Parameter Name</th>
                                                 <th>Action</th>
@@ -240,6 +241,7 @@
                                                 @foreach ($area->parameters as $param)
                                                     <tr>
                                                         {{-- <td>{{ $counter++ }}.</td> --}}
+                                                        <td>{{ $area->surveyVisit->visit_level ?? 'No Level' }}</td>
                                                         <td>{{ $area->area_name }}</td>
                                                         <td>{{ $param->param_name }}. {{ $param->description }}</td>
                                                         <td>

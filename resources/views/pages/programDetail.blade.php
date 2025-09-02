@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-2 col-sm-6 mb-2">
                             <strong>Campus:</strong>
-                            {{ $program->campusRelation->cam_name ?? 'N/A' }}
+                            {{ $program->subFolder->name ?? 'N/A' }}
                         </div>
                         <div class="col-md-2 col-sm-6 mb-2">
                             <strong>Date:</strong>

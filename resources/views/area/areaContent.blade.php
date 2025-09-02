@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="card-body pb-0">
                         <h4 class="mb-3 text-success">{{ $program->prog_name }}</h4>
-                        <span class="text-lg">{{ $area->area_name }}</span>
+                        <span class="text-lg">{{ $program->subFolder->name }}</span>
                     </div>
                 </div>
 

@@ -24,12 +24,12 @@
                 <div class="col-lg-12 col-12">
                     <!-- /.card-header -->
                     <div class="table-responsive p-2">
-                        <table class="table table-head-fixed text-nowrap text-sm" id="example1">
+                        <table class="table table-head-fixed text-nowrap text-sm p-4" id="example1">
                             <thead>
                                 <tr>
                                     <th>PROGRAM NAME</th>
                                     <th>SURVEY VISIT LEVEL</th>
-                                    <th>CAMPUS</th>
+                                    {{-- <th>CAMPUS</th> --}}
                                     <th>DATE CREATED</th>
                                     <th>STATUS</th>
                                     <th>CODE</th>
@@ -51,27 +51,50 @@
                                             <span
                                                 class="badge bg-warning">{{ optional($program->levelRelation)->visit_level ?? 'N/A' }}</span>
                                         </td>
-                                        <td>{{ $program->campusRelation->cam_name ?? 'N/A' }}</td>
+                                        {{-- <td>{{ $program->subFolder->name ?? 'N/A' }}</td> --}}
                                         <td>{{ $program->created_at->format('M d, Y') }}</td>
                                         <td>{{ ucfirst($program->status) }}</td>
                                         <td><span class="badge bg-info">{{ $program->code ?? 'N/A' }}</span></td>
                                         <td>
-                                            <!-- Edit button -->
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#editProgramModal{{ $program->id }}">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-
-                                            <!-- Delete form -->
-                                            <form action="" method="POST"
-                                                class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure you want to delete this program?')">
-                                                    <i class="fas fa-trash"></i>
+                                            <div class="dropdown text-start">
+                                                <!-- Action Button (Ellipsis + Caret) -->
+                                                <button class="btn btn-tool text-primary" type="button"
+                                                    id="dropdownMenuButton{{ $program->id }}" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                    <i class="fas fa-caret-down"></i>
                                                 </button>
-                                            </form>
+
+                                                <!-- Dropdown Menu -->
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm"
+                                                    aria-labelledby="dropdownMenuButton{{ $program->id }}">
+
+                                                    <!-- Edit -->
+                                                    <li>
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                            data-bs-target="#editProgramModal{{ $program->id }}">
+                                                            <i class="fas fa-edit text-primary me-2"></i> Edit
+                                                        </a>
+                                                    </li>
+
+                                                    <!-- Divider -->
+                                                    <li>
+                                                        <hr class="dropdown-divider my-1">
+                                                    </li>
+
+                                                    <!-- Delete -->
+                                                    <li>
+                                                        <form action="" method="POST"
+                                                            onsubmit="return confirm('Are you sure you want to delete this program?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger">
+                                                                <i class="fas fa-trash me-2"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

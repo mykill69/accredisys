@@ -35,7 +35,7 @@
                         <select name="area_id" id="area_id" class="form-control" required>
                             <option value="">-- Select Area --</option>
                             @foreach ($areas as $area)
-                                <option value="{{ $area->id }}">{{ $area->area_name }}</option>
+                                <option value="{{ $area->id }}"> {{ $area->surveyVisit->visit_level ?? 'No Level' }} - {{ $area->area_name }}</option>
                             @endforeach
                         </select>
                     </div>

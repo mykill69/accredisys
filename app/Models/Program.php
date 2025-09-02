@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Program extends Model
 {
     use HasFactory;
-    protected $table = 'program';
+    protected $table = 'programs';
     protected $fillable = [
         'prog_name',
         'sub_folder_id',
         'campus',
         'level',
         'status',
-        'code'
+        'code',
+        'guest_token',
     ];
 
     public function subFolder()

@@ -69,7 +69,7 @@
                 <div class="card-header p-0 pt-1">
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-11">
-                            <ul class="nav flex-column flex-md-row align-items-start align-items-md-center justify-content-between"
+                            {{-- <ul class="nav flex-column flex-md-row align-items-start align-items-md-center justify-content-between"
                                 id="custom-links-list">
                                 <div class="d-flex align-items-center">
                                     <li class="px-3">
@@ -103,26 +103,9 @@
                                             href="{{ url('/folders') }}">
                                             <i class="fas fa-folder"></i> Folders
                                         </a>
-                                    </li> --}}
-                                    <li class="nav-item">
-                                        <a class="nav-link {{ request()->is('users') ? 'active' : '' }}"
-                                            href="{{ url('/users') }}">
-                                            <i class="fas fa-user-cog"></i> User Management
-                                        </a>
-                                    </li>
-                                </div>
-                                <li class="nav-item ml-auto d-flex align-items-center" style="margin-left:auto;"></li>
-                                <span class="nav-link" style="color:#fff;">
-                                    <i class="fas fa-user"></i>
-                                    {{ auth()->user()->fname }} {{ auth()->user()->lname }}
-                                </span>
-                                <a href="{{ route('logout') }}"
-                                   
-                                    class="nav-link px-2" title="Sign out" style="color:#fff;">
-                                    <i class="fas fa-power-off"></i>
-                                </a>
-                                </li>
-                            </ul>
+                                    </li> 
+                                </ul>--}}
+                                    
                         </div>
                     </div>
                 </div>

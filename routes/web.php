@@ -6,8 +6,9 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LevelFileController;
-
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,14 +31,19 @@ Route::group(['middleware'=>['guest']],function(){
 Route::get('/login', [LoginAuthController::class, 'getLogin'])->name('getLogin');
 Route::post('/login', [LoginAuthController::class, 'postLogin'])->name('postLogin');
 
-    
+// Guest route for viewing a single program (no login needed)
+Route::get('/guest/program/{token}', [GuestController::class, 'guestProgram'])
+    ->name('guestProgram');
+
+
 
 });
 
 
 
 Route::group(['middleware'=>['login_auth']],function(){
-
+//logout
+Route::get('/logout', [LoginAuthController::class,'logout'])->name('logout');
     //Main page
 Route::get('/', [PagesController::class, 'home'])->name('home');
 
@@ -88,6 +94,5 @@ Route::post('/parameters/store', [PagesController::class, 'ParameterStore'])->na
 Route::get('/user-settings', [PagesController::class, 'users'])->name('users');
 
 
-//logout
-Route::get('/logout', [MasterController::class,'logout'])->name('logout');
+
 });
