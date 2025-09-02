@@ -69,17 +69,17 @@
                 <div class="card-header p-0 pt-1">
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-11">
-                            {{-- <ul class="nav flex-column flex-md-row align-items-start align-items-md-center justify-content-between"
+                            <ul class="nav flex-column flex-md-row align-items-start align-items-md-center justify-content-between"
                                 id="custom-links-list">
                                 <div class="d-flex align-items-center">
                                     <li class="px-3">
-                                        <a href="{{ route('home') }}" class="d-flex align-items-center logo">
+                                        <a href="" class="d-flex align-items-center logo">
                                             <img src="{{ asset('template/img/CPSU_L.png') }}" alt="Logo"
                                                 style="height:32px; width:auto;">
                                             <span class="ml-2">CPSU Online AccrediSys</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
                                             href="{{ route('home') }}">
                                             <i class="fas fa-home"></i> Home
@@ -97,14 +97,9 @@
                                             href="{{ url('/manageContent') }}">
                                             <i class="fas fa-edit"></i> Manage Content
                                         </a>
-                                    </li>
-                                    {{-- <li class="nav-item">
-                                        <a class="nav-link {{ request()->is('folders') ? 'active' : '' }}"
-                                            href="{{ url('/folders') }}">
-                                            <i class="fas fa-folder"></i> Folders
-                                        </a>
-                                    </li> 
-                                </ul>--}}
+                                    </li> --}}
+                                 
+                                </ul>
                                     
                         </div>
                     </div>
