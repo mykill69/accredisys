@@ -53,8 +53,16 @@
                                         </td>
                                         {{-- <td>{{ $program->subFolder->name ?? 'N/A' }}</td> --}}
                                         <td>{{ $program->created_at->format('M d, Y') }}</td>
-                                        <td>{{ ucfirst($program->status) }}</td>
-                                        <td><span class="badge bg-info">{{ $program->code ?? 'N/A' }}</span></td>
+                                        <td>
+                                            <span class="badge 
+                                                @if(strtolower($program->status) == 'Active') badge bg-success 
+                                                @elseif(strtolower($program->status) == 'Inactive') badge bg-secondary 
+                                                @else bg-light text-dark 
+                                                @endif">
+                                                {{ ucfirst($program->status) }}
+                                            </span>
+                                        </td>
+                                        <td><span class="badge bg-primary">{{ $program->code ?? 'N/A' }}</span></td>
                                         <td>
                                             <div class="dropdown text-start">
                                                 <!-- Action Button (Ellipsis + Caret) -->
