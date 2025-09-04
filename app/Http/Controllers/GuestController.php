@@ -23,10 +23,36 @@ class GuestController extends Controller
     return view('guest.guestLayout', compact('program'));
 }
 
+// public function verifyGuestCode(Request $request, $token)
+// {
+//     $program = Program::where('guest_token', $token)->firstOrFail();
+
+//     if ($request->code === $program->code) {
+//         // Fetch only areas for this program’s survey visit level
+//         $areas = Area::with(['parameters.files' => function ($query) use ($program) {
+//             $query->where('program_id', $program->id);
+//         }])
+//         ->where('survey_visit_id', $program->level)
+//         ->get();
+
+//         // Fetch folders linked to the same survey_visit
+//         $folders = LevelFolder::where('survey_visit_id', $program->level)->get();
+
+//         return view('guest.guestArea', compact('program', 'areas', 'folders'));
+//     }
+
+//     return back()->withErrors(['code' => 'Invalid code. Please try again.']);
+// }
 public function verifyGuestCode(Request $request, $token)
 {
     $program = Program::where('guest_token', $token)->firstOrFail();
 
+    // Check if program is Active
+    if (strtolower($program->status) !== 'active') {
+        return back()->withErrors(['code' => 'This program is not active. Access denied.']);
+    }
+
+    // Validate code
     if ($request->code === $program->code) {
         // Fetch only areas for this program’s survey visit level
         $areas = Area::with(['parameters.files' => function ($query) use ($program) {
@@ -43,7 +69,6 @@ public function verifyGuestCode(Request $request, $token)
 
     return back()->withErrors(['code' => 'Invalid code. Please try again.']);
 }
-
 public function guestProgramAreas($token, $areaId)
 {
     $program = Program::where('guest_token', $token)->firstOrFail();
