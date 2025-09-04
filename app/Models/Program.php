@@ -40,6 +40,12 @@ class Program extends Model
     {
         return $this->hasMany(Area::class, 'survey_visit_id', 'level');
     }
+    public function college()
+{
+    return $this->belongsTo(CollegeExtension::class, 'college_id');
+}
+
+
 
 }
 

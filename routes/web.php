@@ -51,6 +51,9 @@ Route::get('/logout', [LoginAuthController::class,'logout'])->name('logout');
     //Main page
 Route::get('/', [PagesController::class, 'home'])->name('home');
 
+// program list
+Route::get('/program-list', [PagesController::class, 'programList'])->name('programList');
+
 // Folder 
 Route::get('/program-settings', [ProgramController::class, 'programSettings'])->name('programSettings');
 Route::post('/folders/store', [ProgramController::class, 'storeFolder'])->name('storeFolder');

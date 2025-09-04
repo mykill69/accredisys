@@ -9,6 +9,7 @@ use App\Models\SurveyVisit;
 use App\Models\Campus;
 use App\Models\Area;
 use App\Models\Parameters;
+use App\Models\Program;
 
 
 class PagesController extends Controller
@@ -75,6 +76,9 @@ class PagesController extends Controller
 
         return redirect()->back()->with('success', 'Parameter added successfully!');
     }
-
-
+public function programList()
+{
+    $programs = Program::with(['subFolder', 'campusRelation'])->get();
+    return view('pages.programList', compact('programs'));
+}
 }

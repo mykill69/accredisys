@@ -16,7 +16,7 @@
                     <div class="row">
                         <!-- Programs -->
                         <div class="col-lg-4 col-6">
-                            <a href="{{ url('/programs') }}" class="small-box bg-primary text-white"
+                            <a href="{{ route('programList') }}" class="small-box bg-primary text-white"
                                 style="display:block; text-decoration:none;">
                                 <div class="inner">
                                     <h4>Programs</h4>
