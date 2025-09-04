@@ -35,7 +35,11 @@ Route::post('/login', [LoginAuthController::class, 'postLogin'])->name('postLogi
 Route::get('/guest/program/{token}', [GuestController::class, 'guestProgram'])
     ->name('guestProgram');
 
+Route::post('/guest/program/{token}/verify', [GuestController::class, 'verifyGuestCode'])
+    ->name('verifyGuestCode');
 
+Route::get('/guest/program/{token}/areas/{areaId}', [GuestController::class, 'guestProgramAreas'])
+    ->name('guest.program.areas');
 
 });
 
