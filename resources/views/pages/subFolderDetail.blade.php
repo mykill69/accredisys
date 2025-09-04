@@ -55,8 +55,8 @@
                                         <td>{{ $program->created_at->format('M d, Y') }}</td>
                                         <td>
                                             <span class="badge 
-                                                @if(strtolower($program->status) == 'Active') badge bg-success 
-                                                @elseif(strtolower($program->status) == 'Inactive') badge bg-secondary 
+                                                @if(strtolower($program->status) == 'active') badge bg-success 
+                                                @elseif(strtolower($program->status) == 'inactive') badge bg-secondary 
                                                 @else bg-light text-dark 
                                                 @endif">
                                                 {{ ucfirst($program->status) }}
