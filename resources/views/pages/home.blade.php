@@ -33,7 +33,7 @@
 
                         <!-- Colleges -->
                         <div class="col-lg-4 col-6">
-                            <a href="{{ url('/colleges') }}" class="small-box bg-success text-white"
+                            <a href="{{ route('colleges') }}" class="small-box bg-success text-white"
                                 style="display:block; text-decoration:none;">
                                 <div class="inner">
                                     <h4>Campus/Colleges</h4>

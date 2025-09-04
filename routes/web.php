@@ -8,7 +8,8 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LevelFileController;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log; 
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,8 +104,13 @@ Route::post('/college-extension/store', [PagesController::class, 'CollegeExtStor
 Route::post('/areas/store', [PagesController::class, 'AreaStore'])->name('AreaStore');
 Route::post('/parameters/store', [PagesController::class, 'ParameterStore'])->name('ParameterStore');
 
-Route::get('/user-settings', [PagesController::class, 'users'])->name('users');
 
+// users
+Route::get('/user-settings', [UserController::class, 'users'])->name('users');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.delete');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::post('/users/store', [UserController::class, 'store'])->name('store');
 
 
 });

@@ -105,8 +105,8 @@
                                         </a>
                                     </li> --}}
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->is('users') ? 'active' : '' }}"
-                                            href="{{ url('/users') }}">
+                                        <a class="nav-link {{ request()->is('user-settings') ? 'active' : '' }}"
+                                            href="{{ route('users') }}">
                                             <i class="fas fa-user-cog"></i> User Management
                                         </a>
                                     </li>
