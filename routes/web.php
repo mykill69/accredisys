@@ -61,6 +61,9 @@ Route::post('/folders/{id}/subfolders/store', [ProgramController::class, 'storeS
 Route::get('/subfolders/{id}', [ProgramController::class, 'showSubFolder'])->name('showSubFolder');
 Route::post('/subfolders/{id}/programs/store', [ProgramController::class, 'storeProgram'])->name('storeProgram');
 Route::put('/programs/{id}/update', [ProgramController::class, 'updateProgram'])->name('updateProgram');
+// routes/web.php
+Route::delete('/programs/{id}', [ProgramController::class, 'destroy'])->name('programs.destroy');
+
 
 // Program detail
 Route::get('/programs/{id}', [ProgramController::class, 'showProgram'])->name('showProgram');

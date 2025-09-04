@@ -54,11 +54,11 @@
                                         {{-- <td>{{ $program->subFolder->name ?? 'N/A' }}</td> --}}
                                         <td>{{ $program->created_at->format('M d, Y') }}</td>
                                         <td>
-                                            <span class="badge 
-                                                @if(strtolower($program->status) == 'active') badge bg-success 
+                                            <span
+                                                class="badge 
+                                                @if (strtolower($program->status) == 'active') badge bg-success 
                                                 @elseif(strtolower($program->status) == 'inactive') badge bg-secondary 
-                                                @else bg-light text-dark 
-                                                @endif">
+                                                @else bg-light text-dark @endif">
                                                 {{ ucfirst($program->status) }}
                                             </span>
                                         </td>
@@ -92,7 +92,8 @@
 
                                                     <!-- Delete -->
                                                     <li>
-                                                        <form action="" method="POST"
+                                                        <form action="{{ route('programs.destroy', $program->id) }}"
+                                                            method="POST"
                                                             onsubmit="return confirm('Are you sure you want to delete this program?')">
                                                             @csrf
                                                             @method('DELETE')
@@ -100,6 +101,7 @@
                                                                 <i class="fas fa-trash me-2"></i> Delete
                                                             </button>
                                                         </form>
+
                                                     </li>
                                                 </ul>
                                             </div>

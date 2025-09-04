@@ -43,6 +43,7 @@ public function showFolder($id)
     return view('pages.subFolders', compact('folder'));
 }
 
+
 public function storeSubFolder(Request $request, $folderId)
 {
     $request->validate([
@@ -65,6 +66,18 @@ public function showSubFolder($id)
     $visit_levels = SurveyVisit::all();
     return view('pages.subFolderDetail', compact('subFolder', 'campuses', 'visit_levels'));
 }
+public function destroy($id)
+{
+    $program = Program::findOrFail($id);
+
+    // If you want to also delete related data, handle it here
+    // Example: $program->files()->delete();
+
+    $program->delete();
+
+    return redirect()->back()->with('success', 'Program deleted successfully.');
+}
+
 
 // public function updateProgram(Request $request, $id)
 // {
