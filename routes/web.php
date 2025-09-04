@@ -69,6 +69,7 @@ Route::get('/programs/{id}', [ProgramController::class, 'showProgram'])->name('s
 Route::get('/program-areas/{programId}/area/{areaId}', [AreaController::class, 'show'])
     ->name('program.areas');
 
+// Route::delete('/files/{id}', [AreaController::class, 'destroy'])->name('files.destroy');
 
 
 Route::post('/parameters/{parameter}/files', [AreaController::class, 'store']);

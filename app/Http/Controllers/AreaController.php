@@ -93,18 +93,23 @@ public function storeMultiple(Request $request)
 
 
     public function destroy($id)
-    {
-        $file = AreaFile::findOrFail($id);
+{
+    $file = AreaFile::find($id);
 
-        // delete file from storage
-        if (Storage::disk('public')->exists($file->file_path)) {
-            Storage::disk('public')->delete($file->file_path);
-        }
-
-        $file->delete();
-
-        return response()->json(['success' => true]);
+    if (!$file) {
+        return redirect()->back()->with('error', 'File not found.');
     }
+
+    // Delete from storage
+    if (Storage::disk('public')->exists($file->file_path)) {
+        Storage::disk('public')->delete($file->file_path);
+    }
+
+    // Delete DB record
+    $file->delete();
+
+    return redirect()->back()->with('success', 'File deleted successfully.');
+}
 
     public function update(Request $request, $id)
     {

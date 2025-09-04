@@ -38,18 +38,30 @@
                                         <!-- Existing Files -->
                                         <ul id="file-list-{{ $parameter->id }}" class="list-unstyled">
                                             @forelse ($parameter->files as $file)
-                                                <li id="file-{{ $file->id }}">
-                                                    <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank"
-                                                        class="text-primary text-decoration-underline">
-                                                        <i class="fas fa-file-pdf text-danger"></i>
-                                                        <span>{{ $file->file_name }}</span>
-                                                    </a>
-                                                    <hr>
+                                                <li id="file-{{ $file->id }}"
+                                                    class="d-flex justify-content-between align-items-center mb-2 p-2">
+                                                    <!-- File link -->
+                                                    <div>
+                                                        <a href="{{ asset('storage/' . $file->file_path) }}"
+                                                            target="_blank" class="text-primary text-decoration-underline">
+                                                            <i class="fas fa-file-pdf text-danger"></i>
+                                                            <span>{{ $file->file_name }}</span>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Delete form -->
+                                                    <div>
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            onclick="deleteFile('{{ route('files.destroy', $file->id) }}')">
+                                                            <i class="fas fa-trash"></i> Delete
+                                                        </button>
+                                                    </div>
                                                 </li>
                                             @empty
                                                 <small class="text-muted">No files uploaded</small>
                                             @endforelse
                                         </ul>
+
 
                                         <!-- Drag & Drop Upload -->
                                         <div class="upload-box border border-dashed p-3 mt-2 text-center"
@@ -141,4 +153,31 @@
             });
         });
     </script>
+
+    <script>
+        function deleteFile(url) {
+            if (confirm('Are you sure you want to delete this file?')) {
+                let form = document.createElement('form');
+                form.method = 'POST';
+                form.action = url;
+
+                let csrf = document.createElement('input');
+                csrf.type = 'hidden';
+                csrf.name = '_token';
+                csrf.value = '{{ csrf_token() }}';
+                form.appendChild(csrf);
+
+                let method = document.createElement('input');
+                method.type = 'hidden';
+                method.name = '_method';
+                method.value = 'DELETE';
+                form.appendChild(method);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+
+
 @endsection
