@@ -10,6 +10,7 @@ use App\Models\Campus;
 use App\Models\Area;
 use App\Models\Parameters;
 use App\Models\Program;
+use App\Models\CollegeExtension as College;
 
 
 class PagesController extends Controller
@@ -76,9 +77,15 @@ class PagesController extends Controller
 
         return redirect()->back()->with('success', 'Parameter added successfully!');
     }
-public function programList()
-{
-    $programs = Program::with(['subFolder', 'campusRelation'])->get();
-    return view('pages.programList', compact('programs'));
-}
+    public function programList()
+    {
+        $programs = Program::with(['subFolder', 'campusRelation'])->get();
+        return view('pages.programList', compact('programs'));
+    }
+
+    public function collegeList()
+    {
+        $colleges = College::all();
+        return view('pages.colleges', compact('colleges'));
+    }
 }

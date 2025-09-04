@@ -53,6 +53,7 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 
 // program list
 Route::get('/program-list', [PagesController::class, 'programList'])->name('programList');
+Route::get('/colleges', [PagesController::class, 'collegeList'])->name('colleges');
 
 // Folder 
 Route::get('/program-settings', [ProgramController::class, 'programSettings'])->name('programSettings');
