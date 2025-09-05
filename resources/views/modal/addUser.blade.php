@@ -38,7 +38,7 @@
                             <select name="role" class="form-control select" required>
                                 <option value="" disabled selected>Select role</option>
                                 <option value="Staff">QA Personnel</option>
-                                <option value="QA_Director">QA Director</option>
+                                <option value="QA Director">QA Director</option>
                                 <option value="Campus Administrator">Campus Administrator</option>
 
                             </select>
