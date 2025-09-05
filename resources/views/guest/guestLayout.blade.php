@@ -1,7 +1,7 @@
 @extends('guest.mainguest')
 
 @section('body')
-    <div class="card h-100">
+    <div class="card">
         <div class="card-body">
             <div class="row align-items-center">
                 <!-- Left Column -->
