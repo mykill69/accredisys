@@ -29,7 +29,7 @@
                                         <td class="text-center">{{ $index + 1 }}</td>
                                         <td>{{ $user->lname }}, {{ $user->fname }} {{ $user->mname }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td class="text-center bg-warning">{{ ucfirst($user->role) }}</td>
+                                        <td class="text-center"><span class="badge bg-warning">{{ ucfirst($user->role) }}</span></td>
                                         <td class="text-center">
                                             <a href="{{ route('users.edit', $user->id) }}"
                                                 class="btn btn-sm btn-primary">Edit</a>
